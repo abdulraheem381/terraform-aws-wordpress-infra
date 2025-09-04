@@ -14,7 +14,7 @@ It creates:
    ```bash
    git clone https://github.com/your-username/terraform-aws-wordpress-infra.git
    cd terraform-aws-wordpress-infra
-````
+
 
 2. Initialize Terraform:
 
