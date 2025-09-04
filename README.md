@@ -49,11 +49,12 @@ To destroy the infra:
 
 ```bash
 terraform destroy -auto-approve
-```
+
 
 ## 📂 Repo Structure
 
-(terraform-aws-wordpress-infra/
+
+terraform-aws-wordpress-infra/
 │── README.md                  # Project documentation
 │── main.tf                    # Main Terraform config
 │── variables.tf               # Input variables
