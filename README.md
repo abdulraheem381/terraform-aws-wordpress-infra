@@ -14,6 +14,7 @@ It creates:
    ```bash
    git clone https://github.com/your-username/terraform-aws-wordpress-infra.git
    cd terraform-aws-wordpress-infra
+   
 
 
 2. Initialize Terraform:
@@ -49,10 +50,12 @@ To destroy the infra:
 
 ```bash
 terraform destroy -auto-approve
+```
 
 
 ## 📂 Repo Structure
 
+```bash
 
 terraform-aws-wordpress-infra/
 │── README.md                  # Project documentation
@@ -84,4 +87,13 @@ terraform-aws-wordpress-infra/
 │       └── outputs.tf
 │
 └── .gitignore                 # Ignore .terraform/, tfstate, tfvars)
+```
+
+## 📰 Blog Post
+I documented this project in detail on my Hashnode blog:  
+👉 [Read the full article here](https://your-hashnode-link.com)
+
+## 🐦 Twitter/X Post
+I also shared my learnings and project highlights on X (Twitter):  
+👉 [Check the post here](https://x.com/Abdulraheem183)
 
