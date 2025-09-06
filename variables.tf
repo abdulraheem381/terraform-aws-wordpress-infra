@@ -2,6 +2,7 @@ variable "instance_type" {
 
   type        = string
   description = "EC2 Instance type"
+  default = "t2.micro"
 
   validation {
     condition     = var.instance_type == "t2.micro" || var.instance_type == "t3.micro"
@@ -13,12 +14,14 @@ variable "instance_type" {
 variable "volume_size" {
 
   type    = number
+  default = 10
 
 }
 
 variable "volume_type" {
 
   type    = string
+  default = "gp2"
 
 }
 
