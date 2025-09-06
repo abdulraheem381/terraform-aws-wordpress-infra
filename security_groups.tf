@@ -27,4 +27,8 @@ resource "aws_security_group" "ec2-sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
+  tags = merge(var.additional_tags,{
+    name = "ec2-sg"
+  })
+
 }

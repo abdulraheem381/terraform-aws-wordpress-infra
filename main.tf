@@ -4,9 +4,9 @@ resource "aws_vpc" "my-vpc" {
 
   cidr_block = "10.0.0.0/16"
 
-  tags = {
+  tags = merge(var.additional_tags,{
     Name = "my-vpc"
-  }
+  })
 
 }
 
@@ -17,9 +17,9 @@ resource "aws_subnet" "private-sub" {
   vpc_id     = aws_vpc.my-vpc.id
   cidr_block = "10.0.1.0/24"
 
-  tags = {
+  tags = merge(var.additional_tags,{
     Name = "private-sub"
-  }
+  })
 
 }
 
@@ -32,9 +32,9 @@ resource "aws_subnet" "public-subnet" {
   map_public_ip_on_launch = true
   availability_zone       = "ap-south-1a"
 
-  tags = {
+  tags = merge(var.additional_tags,{
     Name = "public-subnet"
-  }
+  })
 
 }
 
@@ -44,9 +44,9 @@ resource "aws_internet_gateway" "my-igw" {
 
   vpc_id = aws_vpc.my-vpc.id
 
-  tags = {
+  tags = merge(var.additional_tags,{
     Name = "my-igw"
-  }
+  })
 
 }
 
@@ -62,9 +62,9 @@ resource "aws_route_table" "my-rt" {
     gateway_id = aws_internet_gateway.my-igw.id
   }
 
-  tags = {
+  tags = merge(var.additional_tags,{
     Name = "my-rt"
-  }
+  })
 
 }
 
@@ -85,11 +85,19 @@ resource "aws_route_table_association" "public-sub" {
 
 resource "aws_instance" "webserver" {
 
-  instance_type               = "t2.micro"
+  instance_type               = var.instance_type
   ami                         = "ami-0861f4e788f5069dd"
   subnet_id                   = aws_subnet.public-subnet.id
   associate_public_ip_address = true
   availability_zone           = "ap-south-1a"
+
+  root_block_device {
+
+    delete_on_termination = true
+    volume_size           = var.volume_size
+    volume_type           = var.volume_type
+
+  }
 
 
   vpc_security_group_ids = [aws_security_group.ec2-sg.id]
@@ -113,8 +121,8 @@ resource "aws_instance" "webserver" {
               systemctl start httpd
               EOF
 
-  tags = {
+  tags = merge(var.additional_tags, {
     Name = "wordpress-ec2"
-  }
+  })
 
 }
